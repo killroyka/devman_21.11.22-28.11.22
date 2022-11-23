@@ -120,5 +120,5 @@ USE_TZ = True
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/staticfiles/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-MEDIA_ROOT = 'Geoimages/'
+MEDIA_ROOT = 'GeoImages/'
 MEDIA_URL = 'media/'
