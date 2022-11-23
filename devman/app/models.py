@@ -17,7 +17,7 @@ class GeoJSON(models.Model):
 
 
 class GeoImage(models.Model):
-    img = models.ImageField("Картинка точки", upload_to="GeoImages/")
+    img = models.ImageField("Картинка точки")
     index = models.IntegerField("порядок изображения",
                                 help_text="Введите число кикм по порядку должно быть изображение",
                                 blank=True,
