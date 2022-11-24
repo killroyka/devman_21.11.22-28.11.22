@@ -1,7 +1,7 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import GeoJSON
-from django.views.generic import ListView
-from django.conf import settings
+from django.views.generic import ListView, DetailView
+
 from .models import GeoJSON
 
 
@@ -12,32 +12,12 @@ class HomepageView(ListView):
     model = GeoJSON
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        return {"context": {
-            "type": "FeatureCollection",
-            "features": [
-                {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [37.62, 55.793676]
-                    },
-                    "properties": {
-                        "title": "«Легенды Москвы",
-                        "placeId": "moscow_legends",
-                        "detailsUrl": 'staticfiles/places/moscow_legends.json'
-                    }
-                },
-                {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [37.64, 55.753676]
-                    },
-                    "properties": {
-                        "title": "Крыши24.рф",
-                        "placeId": "roofs24",
-                        "detailsUrl": "staticfiles/places/roofs24.json"
-                    }
-                }
-            ]
-        }}
+        context = GeoJSON.objects.all()
+        print(context[0].lng)
+        return {'GeoJSONs': context}
+
+
+class GeoJSONDetail(DetailView):
+    model = GeoJSON
+    template_name = "details/GeoJSON.html"
+    context_object_name = "geojson"
