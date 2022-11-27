@@ -38,6 +38,8 @@
       width: 100px;
     }
   </style>
+     {% for GeoJSON in GeoJSONs %}
+  {% endfor %}
   <script id="places-geojson" type="application/json">
     {
       "type": "FeatureCollection",
@@ -52,7 +54,7 @@
           "properties": {
             "title": "{{GeoJSON.title}}",
             "placeId": "{{GeoJSON.place_id}}",
-            "detailsUrl": "details"
+            "detailsUrl": "{{GeoJSON.get_json_data_url}}"
           }
         }
         {% if not forloop.last %}, {% endif %}

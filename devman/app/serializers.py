@@ -3,12 +3,15 @@ from rest_framework import serializers
 from .models import GeoJSON, GeoImage
 
 
-class GeoJSONSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = GeoJSON
-        exclude = ("id",)
-
 class GeoImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = GeoImage
-        exclude = ("id", "index")
+        fields = ("img",)
+
+
+class GeoJSONSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        depth = 1
+        model = GeoJSON
+        fields = ("title", "description_short", "description_long", "lng", "lat")

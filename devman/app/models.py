@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 class GeoJSON(models.Model):
@@ -8,6 +9,10 @@ class GeoJSON(models.Model):
     description_long = models.TextField(verbose_name='Длинное описание')
     lng = models.DecimalField(max_digits=16, decimal_places=14, verbose_name='Долгота')
     lat = models.DecimalField(max_digits=16, decimal_places=14, verbose_name='Широта')
+
+    def get_json_data_url(self):
+        print(reverse("GeoJSONDetail", args=[str(self.id)]))
+        return reverse("GeoJSONDetail", args=[str(self.id)])
 
     class Meta:
         verbose_name = 'Точка'

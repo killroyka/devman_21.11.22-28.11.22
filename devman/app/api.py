@@ -18,5 +18,11 @@ def GeoJSONDetail(request, pk):
         geojson["imgs"] = []
         for image in images:
             geojson["imgs"].append(GeoImageSerializer(image).data["img"])
+        geojson["coordinates"] = {
+            "lng": geojson["lng"],
+            "lat": geojson["lat"]
+        }
+        del geojson["lat"]
+        del geojson['lng']
         pprint(geojson)
         return Response(geojson)
