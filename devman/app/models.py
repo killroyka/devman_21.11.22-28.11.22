@@ -27,8 +27,7 @@ class GeoImage(models.Model):
     index = models.IntegerField("порядок изображения",
                                 help_text="Введите число кикм по порядку должно быть изображение",
                                 blank=True,
-                                null=True,
-                                unique=True)
+                                null=True)
     geojson = models.ForeignKey(GeoJSON,
                                 on_delete=models.CASCADE,
                                 null=True,
